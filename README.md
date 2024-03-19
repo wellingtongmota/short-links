@@ -17,32 +17,44 @@
 
 ## Endpoints
 
-### GET /api
-
-List all shortlinks
-
-### POST /api
-
-Example:
-
-```
-{
-  "code": "instagram",
-  "url": "https://www.instagram.com/"
-}
-```
-
-Create a shortlink
-
 ### GET /:code
-
-Example:
 
 ```
 GET /instagram
 ```
 
 Redirect to the original URL
+
+### GET /api/links
+
+```
+GET /api/links
+```
+
+List all shortlinks
+
+### POST /api/metrics
+
+```
+POST /api/metrics
+```
+
+Return the metrics of the shortlink by clicks
+
+### POST /api
+
+Example:
+
+```
+POST /api
+
+body: {
+  "code": "instagram",
+  "url": "https://www.instagram.com/"
+}
+```
+
+Create a shortlink
 
 ## Author
 
