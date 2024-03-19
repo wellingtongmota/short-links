@@ -4,35 +4,41 @@ import { sql } from "./lib/postgres"
 
 const app = fastify()
 
-app.post("/api/shorten", async (req, res) => {
+app.get("/api", async (request, replay) => {
+  const result =
+    await sql`SELECT code, original_url FROM shortlinks ORDER BY created_at DESC`
+  return replay.send(result)
+})
+
+app.post("/api", async (request, replay) => {
   const { code, url } = z
     .object({
       code: z.string(),
       url: z.string().url()
     })
-    .parse(req.body)
+    .parse(request.body)
 
   const result =
     await sql`INSERT INTO shortlinks (code, original_url) VALUES (${code}, ${url}) RETURNING id`
 
-  return res.status(201).send({
+  return replay.status(201).send({
     result: result[0].id,
     code: code,
     url: url
   })
 })
 
-app.get("/:code", async (req, res) => {
+app.get("/:code", async (request, replay) => {
   const { code } = z
     .object({
       code: z.string().min(3)
     })
-    .parse(req.params)
+    .parse(request.params)
 
   const result =
     await sql`SELECT original_url FROM shortlinks WHERE code = ${code}`
 
-  return res.redirect(result[0].original_url)
+  return replay.redirect(result[0].original_url)
 })
 
 app.listen({ port: 3333 }).then(() => {
