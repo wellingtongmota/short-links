@@ -1,4 +1,4 @@
-import { sql } from "./lib/postgres";
+import { sql } from "./lib/postgres"
 
 async function setup() {
   await sql/*sql*/ `
@@ -8,11 +8,11 @@ async function setup() {
       ORIGINAL_URL TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-  `;
+  `
 
-  await sql.end();
+  await sql.end()
 
-  console.log("Tables created");
+  console.log("Tables created")
 }
 
-setup();
+setup()
