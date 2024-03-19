@@ -46,7 +46,7 @@ Redirect to the original URL
 
 ## Author
 
-- [@wellingtongmota](https://github.com/wellingtongmota)
+[@wellingtongmota](https://github.com/wellingtongmota)
 
 ## License
 
