@@ -5,7 +5,7 @@
 - Node.js
 - Fastify
 - Postgres
-- Redis (in production)
+- Redis
 - Zod
 
 ## Development
