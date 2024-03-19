@@ -2,7 +2,9 @@ import fastify from "fastify";
 
 const app = fastify();
 
-app.get("/", async () => {
+app.post("/", async (req, res) => {
+  const { code, url } = req.body;
+
   return { message: "Hello, world!" };
 });
 
